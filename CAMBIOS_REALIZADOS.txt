@@ -1,0 +1,24 @@
+CAMBIOS REALIZADOS - Sistema de Agentes Inteligentes
+
+1. Obstaculos de AgenteNavegacion
+   - El atributo obstaculosDetectados ahora es String.
+   - Se pueden escribir descripciones como: "trafico, huecos, obras".
+   - El calculo de rendimiento cuenta las descripciones separadas por coma o punto y coma para mantener una penalizacion aproximada.
+
+2. Busqueda/seleccion de agentes sin recordar ID
+   - Consultar Navegacion: lista desplegable de agentes.
+   - Eliminar Navegacion: lista desplegable de agentes.
+   - Consultar Asistencia Medica: lista desplegable de agentes.
+   - Eliminar Asistencia Medica: lista desplegable de agentes.
+   - Calcular Rendimiento: lista desplegable con todos los agentes.
+   - Los ID siguen existiendo internamente, pero ya no es necesario escribirlos para estas operaciones.
+
+3. Persistencia de informacion
+   - Los agentes se serializan automaticamente al agregar, actualizar o eliminar.
+   - Los datos se cargan automaticamente al iniciar el programa.
+   - Tambien se realiza un guardado de respaldo al cerrar la aplicacion.
+   - Archivo por defecto: ~/.sistema-agentes-inteligentes/agentes.dat
+
+4. Cierre del programa
+   - Cerrar la ventana principal finaliza la aplicacion correctamente.
+   - La opcion Archivo > Salir tambien finaliza la aplicacion.
