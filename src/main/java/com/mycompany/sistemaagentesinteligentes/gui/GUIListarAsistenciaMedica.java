@@ -58,12 +58,12 @@ public class GUIListarAsistenciaMedica extends javax.swing.JFrame implements ICa
 
         tblAgentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "Autonomia", "Estado", "Confianza", "Usuario", "Tipo Asist.", "Urgencia", "Comandos", "Idioma", "Especialidad", "Prioridad Pac.", "Protoc. Emerg.", "Signos Vitales", "Tiempo Resp."
+                "ID", "Nombre", "Autonomia", "Estado", "Confianza", "Tipo Asist.", "Urgencia", "Especialidad", "Protoc. Emerg."
             }
         ));
         jScrollPane1.setViewportView(tblAgentes);
@@ -132,16 +132,10 @@ public class GUIListarAsistenciaMedica extends javax.swing.JFrame implements ICa
                 ag.getNivelAutonomia(),
                 ag.getEstadoOperativo(),
                 ag.getNivelConfianza(),
-                ag.getUsuarioAsignado(),
                 ag.getTipoAsistencia(),
                 ag.getNivelUrgencia(),
-                ag.getComandosProcesados(),
-                ag.getIdiomaRespuesta(),
                 ag.getEspecialidadMedica(),
-                ag.getNivelPrioridadPaciente(),
-                ag.isProtocoloEmergencia(),
-                ag.getSignosVitalesMonitoreados(),
-                ag.getTiempoRespuestaMedica()
+                ag.isProtocoloEmergencia()
             };
 
             modelo.addRow(fila);

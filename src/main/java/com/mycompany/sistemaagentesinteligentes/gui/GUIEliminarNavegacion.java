@@ -50,7 +50,6 @@ public class GUIEliminarNavegacion extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         btnConsultar = new javax.swing.JButton();
         lblId = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
@@ -59,7 +58,6 @@ public class GUIEliminarNavegacion extends javax.swing.JFrame {
         lblConfianza = new javax.swing.JLabel();
         lblOrigen = new javax.swing.JLabel();
         lblDestino = new javax.swing.JLabel();
-        lblObstaculos = new javax.swing.JLabel();
         lblPrecision = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
 
@@ -99,10 +97,7 @@ public class GUIEliminarNavegacion extends javax.swing.JFrame {
         jLabel9.setText("Destino:");
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Obstaculos Detectados:");
-
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Precision GPS:");
+        jLabel10.setText("Precision GPS:");
 
         btnConsultar.setBackground(new java.awt.Color(255, 255, 255));
         btnConsultar.setForeground(new java.awt.Color(21, 101, 192));
@@ -129,9 +124,6 @@ public class GUIEliminarNavegacion extends javax.swing.JFrame {
 
         lblDestino.setForeground(new java.awt.Color(255, 255, 255));
         lblDestino.setText("Aun no encontrado");
-
-        lblObstaculos.setForeground(new java.awt.Color(255, 255, 255));
-        lblObstaculos.setText("Aun no encontrado");
 
         lblPrecision.setForeground(new java.awt.Color(255, 255, 255));
         lblPrecision.setText("Aun no encontrado");
@@ -165,7 +157,6 @@ public class GUIEliminarNavegacion extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel11)
                         )
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +167,6 @@ public class GUIEliminarNavegacion extends javax.swing.JFrame {
                             .addComponent(lblConfianza)
                             .addComponent(lblOrigen)
                             .addComponent(lblDestino)
-                            .addComponent(lblObstaculos)
                             .addComponent(lblPrecision)
                         )
                     )
@@ -225,10 +215,6 @@ public class GUIEliminarNavegacion extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(lblObstaculos))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
                     .addComponent(lblPrecision))
                 .addGap(20, 20, 20)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,7 +263,6 @@ public class GUIEliminarNavegacion extends javax.swing.JFrame {
                 lblConfianza.setText(String.valueOf(ag.getNivelConfianza()));
                 lblOrigen.setText(ag.getOrigen());
                 lblDestino.setText(ag.getDestino());
-                lblObstaculos.setText(ag.getObstaculosDetectados());
                 lblPrecision.setText(String.valueOf(ag.getPrecisionGPS()));
 
             } else {
@@ -329,7 +314,6 @@ public class GUIEliminarNavegacion extends javax.swing.JFrame {
         lblConfianza.setText("Aun no encontrado");
         lblOrigen.setText("Aun no encontrado");
         lblDestino.setText("Aun no encontrado");
-        lblObstaculos.setText("Aun no encontrado");
         lblPrecision.setText("Aun no encontrado");
     }
 
@@ -358,7 +342,6 @@ public class GUIEliminarNavegacion extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -374,7 +357,6 @@ public class GUIEliminarNavegacion extends javax.swing.JFrame {
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblObstaculos;
     private javax.swing.JLabel lblOrigen;
     private javax.swing.JLabel lblPrecision;
     private javax.swing.JTextField txtConsulta;

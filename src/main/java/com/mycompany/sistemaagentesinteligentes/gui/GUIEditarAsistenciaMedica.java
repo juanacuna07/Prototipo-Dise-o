@@ -43,27 +43,15 @@ public class GUIEditarAsistenciaMedica extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtAutonomia = new javax.swing.JTextField();
         txtEstado = new javax.swing.JTextField();
         txtConfianza = new javax.swing.JTextField();
-        txtUsuarioAsignado = new javax.swing.JTextField();
         txtTipoAsistencia = new javax.swing.JTextField();
         txtUrgencia = new javax.swing.JTextField();
-        txtComandos = new javax.swing.JTextField();
-        txtIdioma = new javax.swing.JTextField();
         txtEspecialidad = new javax.swing.JTextField();
-        txtPrioridad = new javax.swing.JTextField();
         txtProtocolo = new javax.swing.JTextField();
-        txtSignos = new javax.swing.JTextField();
-        txtTiempoRespuesta = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -112,54 +100,24 @@ public class GUIEditarAsistenciaMedica extends javax.swing.JFrame {
         txtConfianza.setEnabled(false);
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Usuario Asignado:");
-
-        txtUsuarioAsignado.setEnabled(false);
-
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Tipo Asistencia:");
+        jLabel8.setText("Tipo Asistencia:");
 
         txtTipoAsistencia.setEnabled(false);
 
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Nivel Urgencia (1-5):");
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Nivel Urgencia (1-5):");
 
         txtUrgencia.setEnabled(false);
 
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Comandos Procesados:");
-
-        txtComandos.setEnabled(false);
-
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Idioma Respuesta:");
-
-        txtIdioma.setEnabled(false);
-
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Especialidad Medica:");
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Especialidad Medica:");
 
         txtEspecialidad.setEnabled(false);
 
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Prioridad Paciente (1-5):");
-
-        txtPrioridad.setEnabled(false);
-
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Protocolo Emergencia (true/false):");
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Protocolo Emergencia (true/false):");
 
         txtProtocolo.setEnabled(false);
-
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Signos Vitales Monitoreados:");
-
-        txtSignos.setEnabled(false);
-
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Tiempo Respuesta Medica:");
-
-        txtTiempoRespuesta.setEnabled(false);
 
         btnActualizar.setBackground(new java.awt.Color(255, 255, 255));
         btnActualizar.setForeground(new java.awt.Color(21, 101, 192));
@@ -192,12 +150,6 @@ public class GUIEditarAsistenciaMedica extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel17)
                         )
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,16 +158,10 @@ public class GUIEditarAsistenciaMedica extends javax.swing.JFrame {
                             .addComponent(txtAutonomia, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtConfianza, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsuarioAsignado, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTipoAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUrgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtComandos, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSignos, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTiempoRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         )
                     )
                     .addComponent(btnActualizar)
@@ -255,43 +201,19 @@ public class GUIEditarAsistenciaMedica extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtUsuarioAsignado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
                     .addComponent(txtTipoAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
+                    .addComponent(jLabel9)
                     .addComponent(txtUrgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(txtComandos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
+                    .addComponent(jLabel10)
                     .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(txtPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
+                    .addComponent(jLabel11)
                     .addComponent(txtProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(txtSignos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(txtTiempoRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -335,20 +257,13 @@ public class GUIEditarAsistenciaMedica extends javax.swing.JFrame {
                 txtAutonomia.setText(String.valueOf(ag.getNivelAutonomia()));
                 txtEstado.setText(ag.getEstadoOperativo());
                 txtConfianza.setText(String.valueOf(ag.getNivelConfianza()));
-                txtUsuarioAsignado.setText(ag.getUsuarioAsignado());
                 txtTipoAsistencia.setText(ag.getTipoAsistencia());
                 txtUrgencia.setText(String.valueOf(ag.getNivelUrgencia()));
-                txtComandos.setText(String.valueOf(ag.getComandosProcesados()));
-                txtIdioma.setText(ag.getIdiomaRespuesta());
                 txtEspecialidad.setText(ag.getEspecialidadMedica());
-                txtPrioridad.setText(String.valueOf(ag.getNivelPrioridadPaciente()));
                 txtProtocolo.setText(String.valueOf(ag.isProtocoloEmergencia()));
-                txtSignos.setText(String.valueOf(ag.getSignosVitalesMonitoreados()));
-                txtTiempoRespuesta.setText(String.valueOf(ag.getTiempoRespuestaMedica()));
 
                 for (java.awt.Component campo : new java.awt.Component[]{txtNombre, txtAutonomia, txtEstado, txtConfianza,
-                        txtUsuarioAsignado, txtTipoAsistencia, txtUrgencia, txtComandos, txtIdioma,
-                        txtEspecialidad, txtPrioridad, txtProtocolo, txtSignos, txtTiempoRespuesta}) {
+                        txtTipoAsistencia, txtUrgencia, txtEspecialidad, txtProtocolo}) {
                     campo.setEnabled(true);
                 }
                 btnActualizar.setEnabled(true);
@@ -359,7 +274,7 @@ public class GUIEditarAsistenciaMedica extends javax.swing.JFrame {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El ID debe ser un número entero válido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El campo 'ID' debe ser un número entero válido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al buscar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -371,27 +286,51 @@ public class GUIEditarAsistenciaMedica extends javax.swing.JFrame {
             return;
         }
 
-        try {
-            int idOriginal = Integer.parseInt(lblId.getText().trim());
+        int idOriginal = Integer.parseInt(lblId.getText().trim());
 
+        double nivelAutonomia;
+        try {
+            nivelAutonomia = Double.parseDouble(txtAutonomia.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El campo 'Nivel Autonomia' debe ser un número válido.", "Dato inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        double nivelConfianza;
+        try {
+            nivelConfianza = Double.parseDouble(txtConfianza.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El campo 'Nivel Confianza' debe ser un número válido.", "Dato inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int nivelUrgencia;
+        try {
+            nivelUrgencia = Integer.parseInt(txtUrgencia.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El campo 'Nivel Urgencia' debe ser un número entero válido (1-5).", "Dato inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String strProtocolo = txtProtocolo.getText().trim();
+        boolean protocoloEmergencia;
+        if (strProtocolo.equalsIgnoreCase("true") || strProtocolo.equalsIgnoreCase("si")) {
+            protocoloEmergencia = true;
+        } else if (strProtocolo.equalsIgnoreCase("false") || strProtocolo.equalsIgnoreCase("no")) {
+            protocoloEmergencia = false;
+        } else {
+            JOptionPane.showMessageDialog(this, "El campo 'Protocolo Emergencia' debe ser 'true' o 'false'.", "Dato inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
             String nombre = txtNombre.getText().trim();
-            double nivelAutonomia = Double.parseDouble(txtAutonomia.getText().trim());
             String estadoOperativo = txtEstado.getText().trim();
-            double nivelConfianza = Double.parseDouble(txtConfianza.getText().trim());
-            String usuarioAsignado = txtUsuarioAsignado.getText().trim();
             String tipoAsistencia = txtTipoAsistencia.getText().trim();
-            int nivelUrgencia = Integer.parseInt(txtUrgencia.getText().trim());
-            int comandosProcesados = Integer.parseInt(txtComandos.getText().trim());
-            String idiomaRespuesta = txtIdioma.getText().trim();
             String especialidadMedica = txtEspecialidad.getText().trim();
-            int nivelPrioridadPaciente = Integer.parseInt(txtPrioridad.getText().trim());
-            boolean protocoloEmergencia = Boolean.parseBoolean(txtProtocolo.getText().trim());
-            int signosVitalesMonitoreados = Integer.parseInt(txtSignos.getText().trim());
-            double tiempoRespuestaMedica = Double.parseDouble(txtTiempoRespuesta.getText().trim());
 
             AgenteAsistenciaMedica agenteActualizado = new AgenteAsistenciaMedica(idOriginal, nombre, nivelAutonomia, estadoOperativo, nivelConfianza,
-                    usuarioAsignado, tipoAsistencia, nivelUrgencia, comandosProcesados, idiomaRespuesta,
-                    especialidadMedica, nivelPrioridadPaciente, protocoloEmergencia, signosVitalesMonitoreados, tiempoRespuestaMedica);
+                    tipoAsistencia, nivelUrgencia, especialidadMedica, protocoloEmergencia);
 
             ServicioAgentes.getInstancia().actualizarAgente(idOriginal, agenteActualizado);
 
@@ -400,8 +339,6 @@ public class GUIEditarAsistenciaMedica extends javax.swing.JFrame {
             txtConsulta.setText("");
             limpiarDatos();
 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Los campos numéricos deben contener valores válidos.", "Error de formato", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al actualizar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -417,26 +354,14 @@ public class GUIEditarAsistenciaMedica extends javax.swing.JFrame {
         txtEstado.setEnabled(false);
         txtConfianza.setText("");
         txtConfianza.setEnabled(false);
-        txtUsuarioAsignado.setText("");
-        txtUsuarioAsignado.setEnabled(false);
         txtTipoAsistencia.setText("");
         txtTipoAsistencia.setEnabled(false);
         txtUrgencia.setText("");
         txtUrgencia.setEnabled(false);
-        txtComandos.setText("");
-        txtComandos.setEnabled(false);
-        txtIdioma.setText("");
-        txtIdioma.setEnabled(false);
         txtEspecialidad.setText("");
         txtEspecialidad.setEnabled(false);
-        txtPrioridad.setText("");
-        txtPrioridad.setEnabled(false);
         txtProtocolo.setText("");
         txtProtocolo.setEnabled(false);
-        txtSignos.setText("");
-        txtSignos.setEnabled(false);
-        txtTiempoRespuesta.setText("");
-        txtTiempoRespuesta.setEnabled(false);
         btnActualizar.setEnabled(false);
     }
 
@@ -463,12 +388,6 @@ public class GUIEditarAsistenciaMedica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -480,19 +399,13 @@ public class GUIEditarAsistenciaMedica extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblId;
     private javax.swing.JTextField txtAutonomia;
-    private javax.swing.JTextField txtComandos;
     private javax.swing.JTextField txtConfianza;
     private javax.swing.JTextField txtConsulta;
     private javax.swing.JTextField txtEspecialidad;
     private javax.swing.JTextField txtEstado;
-    private javax.swing.JTextField txtIdioma;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPrioridad;
     private javax.swing.JTextField txtProtocolo;
-    private javax.swing.JTextField txtSignos;
-    private javax.swing.JTextField txtTiempoRespuesta;
     private javax.swing.JTextField txtTipoAsistencia;
     private javax.swing.JTextField txtUrgencia;
-    private javax.swing.JTextField txtUsuarioAsignado;
     // End of variables declaration//GEN-END:variables
 }

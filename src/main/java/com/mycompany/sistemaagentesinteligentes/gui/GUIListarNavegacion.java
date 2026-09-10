@@ -58,12 +58,12 @@ public class GUIListarNavegacion extends javax.swing.JFrame implements ICambiabl
 
         tblAgentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "Autonomia", "Estado", "Confianza", "Origen", "Destino", "Obstaculos", "Precision GPS"
+                "ID", "Nombre", "Autonomia", "Estado", "Confianza", "Origen", "Destino", "Precision GPS"
             }
         ));
         jScrollPane1.setViewportView(tblAgentes);
@@ -134,7 +134,6 @@ public class GUIListarNavegacion extends javax.swing.JFrame implements ICambiabl
                 ag.getNivelConfianza(),
                 ag.getOrigen(),
                 ag.getDestino(),
-                ag.getObstaculosDetectados(),
                 ag.getPrecisionGPS()
             };
 

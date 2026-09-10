@@ -42,7 +42,6 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtAutonomia = new javax.swing.JTextField();
@@ -50,7 +49,6 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
         txtConfianza = new javax.swing.JTextField();
         txtOrigen = new javax.swing.JTextField();
         txtDestino = new javax.swing.JTextField();
-        txtObstaculos = new javax.swing.JTextField();
         txtPrecision = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
 
@@ -110,12 +108,7 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
         txtDestino.setEnabled(false);
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Obstaculos Detectados:");
-
-        txtObstaculos.setEnabled(false);
-
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Precision GPS:");
+        jLabel10.setText("Precision GPS:");
 
         txtPrecision.setEnabled(false);
 
@@ -149,7 +142,6 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel11)
                         )
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +152,6 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
                             .addComponent(txtConfianza, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtObstaculos, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPrecision, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         )
                     )
@@ -209,10 +200,6 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txtObstaculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
                     .addComponent(txtPrecision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,7 +246,6 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
                 txtConfianza.setText(String.valueOf(ag.getNivelConfianza()));
                 txtOrigen.setText(ag.getOrigen());
                 txtDestino.setText(ag.getDestino());
-                txtObstaculos.setText(ag.getObstaculosDetectados());
                 txtPrecision.setText(String.valueOf(ag.getPrecisionGPS()));
 
                 txtNombre.setEnabled(true);
@@ -268,7 +254,6 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
                 txtConfianza.setEnabled(true);
                 txtOrigen.setEnabled(true);
                 txtDestino.setEnabled(true);
-                txtObstaculos.setEnabled(true);
                 txtPrecision.setEnabled(true);
                 btnActualizar.setEnabled(true);
 
@@ -278,7 +263,7 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El ID debe ser un número entero válido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El campo 'ID' debe ser un número entero válido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al buscar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -290,20 +275,40 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
             return;
         }
 
-        try {
-            int idOriginal = Integer.parseInt(lblId.getText().trim());
+        int idOriginal = Integer.parseInt(lblId.getText().trim());
 
+        double nivelAutonomia;
+        try {
+            nivelAutonomia = Double.parseDouble(txtAutonomia.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El campo 'Nivel Autonomia' debe ser un número válido.", "Dato inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        double nivelConfianza;
+        try {
+            nivelConfianza = Double.parseDouble(txtConfianza.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El campo 'Nivel Confianza' debe ser un número válido.", "Dato inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        double precisionGPS;
+        try {
+            precisionGPS = Double.parseDouble(txtPrecision.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El campo 'Precision GPS' debe ser un número válido.", "Dato inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
             String nombre = txtNombre.getText().trim();
-            double nivelAutonomia = Double.parseDouble(txtAutonomia.getText().trim());
             String estadoOperativo = txtEstado.getText().trim();
-            double nivelConfianza = Double.parseDouble(txtConfianza.getText().trim());
             String origen = txtOrigen.getText().trim();
             String destino = txtDestino.getText().trim();
-            String obstaculosDetectados = txtObstaculos.getText().trim();
-            double precisionGPS = Double.parseDouble(txtPrecision.getText().trim());
 
             AgenteNavegacion agenteActualizado = new AgenteNavegacion(idOriginal, nombre, nivelAutonomia, estadoOperativo, nivelConfianza,
-                    origen, destino, obstaculosDetectados, precisionGPS);
+                    origen, destino, precisionGPS);
 
             ServicioAgentes.getInstancia().actualizarAgente(idOriginal, agenteActualizado);
 
@@ -312,8 +317,6 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
             txtConsulta.setText("");
             limpiarDatos();
 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Los campos numéricos deben contener valores válidos.", "Error de formato", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al actualizar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -333,8 +336,6 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
         txtOrigen.setEnabled(false);
         txtDestino.setText("");
         txtDestino.setEnabled(false);
-        txtObstaculos.setText("");
-        txtObstaculos.setEnabled(false);
         txtPrecision.setText("");
         txtPrecision.setEnabled(false);
         btnActualizar.setEnabled(false);
@@ -362,7 +363,6 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -379,7 +379,6 @@ public class GUIEditarNavegacion extends javax.swing.JFrame {
     private javax.swing.JTextField txtDestino;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtObstaculos;
     private javax.swing.JTextField txtOrigen;
     private javax.swing.JTextField txtPrecision;
     // End of variables declaration//GEN-END:variables

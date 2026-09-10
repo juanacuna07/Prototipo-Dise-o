@@ -51,19 +51,15 @@ public class GUIConsultarAsistenciaMedica extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         btnConsultar = new javax.swing.JButton();
         lblId = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         lblAutonomia = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
         lblConfianza = new javax.swing.JLabel();
-        lblUsuarioAsignado = new javax.swing.JLabel();
         lblTipoAsistencia = new javax.swing.JLabel();
         lblUrgencia = new javax.swing.JLabel();
         lblEspecialidad = new javax.swing.JLabel();
-        lblPrioridad = new javax.swing.JLabel();
         lblProtocolo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -96,22 +92,16 @@ public class GUIConsultarAsistenciaMedica extends javax.swing.JFrame {
         jLabel7.setText("Nivel Confianza:");
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Usuario Asignado:");
+        jLabel8.setText("Tipo Asistencia:");
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Tipo Asistencia:");
+        jLabel9.setText("Nivel Urgencia:");
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Nivel Urgencia:");
+        jLabel10.setText("Especialidad Medica:");
 
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Especialidad Medica:");
-
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Prioridad Paciente:");
-
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Protocolo Emergencia:");
+        jLabel11.setText("Protocolo Emergencia:");
 
         btnConsultar.setBackground(new java.awt.Color(255, 255, 255));
         btnConsultar.setForeground(new java.awt.Color(21, 101, 192));
@@ -133,9 +123,6 @@ public class GUIConsultarAsistenciaMedica extends javax.swing.JFrame {
         lblConfianza.setForeground(new java.awt.Color(255, 255, 255));
         lblConfianza.setText("Aun no encontrado");
 
-        lblUsuarioAsignado.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsuarioAsignado.setText("Aun no encontrado");
-
         lblTipoAsistencia.setForeground(new java.awt.Color(255, 255, 255));
         lblTipoAsistencia.setText("Aun no encontrado");
 
@@ -144,9 +131,6 @@ public class GUIConsultarAsistenciaMedica extends javax.swing.JFrame {
 
         lblEspecialidad.setForeground(new java.awt.Color(255, 255, 255));
         lblEspecialidad.setText("Aun no encontrado");
-
-        lblPrioridad.setForeground(new java.awt.Color(255, 255, 255));
-        lblPrioridad.setText("Aun no encontrado");
 
         lblProtocolo.setForeground(new java.awt.Color(255, 255, 255));
         lblProtocolo.setText("Aun no encontrado");
@@ -176,8 +160,6 @@ public class GUIConsultarAsistenciaMedica extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
                         )
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,11 +168,9 @@ public class GUIConsultarAsistenciaMedica extends javax.swing.JFrame {
                             .addComponent(lblAutonomia)
                             .addComponent(lblEstado)
                             .addComponent(lblConfianza)
-                            .addComponent(lblUsuarioAsignado)
                             .addComponent(lblTipoAsistencia)
                             .addComponent(lblUrgencia)
                             .addComponent(lblEspecialidad)
-                            .addComponent(lblPrioridad)
                             .addComponent(lblProtocolo)
                         )
                     )
@@ -230,26 +210,18 @@ public class GUIConsultarAsistenciaMedica extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(lblUsuarioAsignado))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
                     .addComponent(lblTipoAsistencia))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
+                    .addComponent(jLabel9)
                     .addComponent(lblUrgencia))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
+                    .addComponent(jLabel10)
                     .addComponent(lblEspecialidad))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(lblPrioridad))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
+                    .addComponent(jLabel11)
                     .addComponent(lblProtocolo))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -294,11 +266,9 @@ public class GUIConsultarAsistenciaMedica extends javax.swing.JFrame {
                 lblAutonomia.setText(String.valueOf(ag.getNivelAutonomia()));
                 lblEstado.setText(ag.getEstadoOperativo());
                 lblConfianza.setText(String.valueOf(ag.getNivelConfianza()));
-                lblUsuarioAsignado.setText(ag.getUsuarioAsignado());
                 lblTipoAsistencia.setText(ag.getTipoAsistencia());
                 lblUrgencia.setText(String.valueOf(ag.getNivelUrgencia()));
                 lblEspecialidad.setText(ag.getEspecialidadMedica());
-                lblPrioridad.setText(String.valueOf(ag.getNivelPrioridadPaciente()));
                 lblProtocolo.setText(ag.isProtocoloEmergencia() ? "Si" : "No");
 
             } else {
@@ -319,11 +289,9 @@ public class GUIConsultarAsistenciaMedica extends javax.swing.JFrame {
         lblAutonomia.setText("Aun no encontrado");
         lblEstado.setText("Aun no encontrado");
         lblConfianza.setText("Aun no encontrado");
-        lblUsuarioAsignado.setText("Aun no encontrado");
         lblTipoAsistencia.setText("Aun no encontrado");
         lblUrgencia.setText("Aun no encontrado");
         lblEspecialidad.setText("Aun no encontrado");
-        lblPrioridad.setText("Aun no encontrado");
         lblProtocolo.setText("Aun no encontrado");
     }
 
@@ -352,8 +320,6 @@ public class GUIConsultarAsistenciaMedica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -369,11 +335,9 @@ public class GUIConsultarAsistenciaMedica extends javax.swing.JFrame {
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblPrioridad;
     private javax.swing.JLabel lblProtocolo;
     private javax.swing.JLabel lblTipoAsistencia;
     private javax.swing.JLabel lblUrgencia;
-    private javax.swing.JLabel lblUsuarioAsignado;
     private javax.swing.JTextField txtConsulta;
     // End of variables declaration//GEN-END:variables
 }
