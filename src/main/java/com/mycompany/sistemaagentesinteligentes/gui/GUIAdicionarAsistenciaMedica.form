@@ -65,6 +65,7 @@
                               <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -83,6 +84,7 @@
                               <Component id="txtProtocoloEmergencia" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
                               <Component id="txtSignosVitalesMonitoreados" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
                               <Component id="txtTiempoRespuestaMedica" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                              <Component id="txtIdUsuarioAsociar" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="btnAdicionar" min="-2" max="-2" attributes="0"/>
@@ -170,6 +172,11 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTiempoRespuestaMedica" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtIdUsuarioAsociar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnAdicionar" min="-2" max="-2" attributes="0"/>
@@ -339,6 +346,16 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTiempoRespuestaMedica">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel17">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Asociar a Usuario (ID, opcional)"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtIdUsuarioAsociar">
         </Component>
         <Component class="javax.swing.JButton" name="btnAdicionar">
           <Properties>

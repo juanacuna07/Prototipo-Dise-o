@@ -5,123 +5,69 @@
 package com.mycompany.sistemaagentesinteligentes.services;
 
 import com.mycompany.sistemaagentesinteligentes.model.AgenteInteligente;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Servicio central de agentes. Los datos se guardan automaticamente en disco
- * cada vez que se agrega, actualiza o elimina un agente, y se vuelven a cargar
- * al iniciar el programa.
+ * Servicio central de agentes. Sigue el mismo patron Singleton que
+ * ServicioInstrumentos de la guia: los datos viven unicamente en memoria
+ * mientras la aplicacion esta abierta (no se guarda ni se lee nada de disco).
+ * Cada vez que se adiciona, actualiza o elimina un agente se notifica a
+ * traves de ServicioObserver para que las ventanas de listado se refresquen
+ * automaticamente.
  *
  * @author Juan Acuña, Luis Hernández, Stephany Trujillo
  */
-public class ServicioAgentes {
+public class ServicioAgentes implements IServicioAgentes {
 
-    private static final Path ARCHIVO_DATOS = obtenerRutaArchivo();
-    private static Map<Integer, AgenteInteligente> agentes = cargarAgentes();
+    private Map<Integer, AgenteInteligente> agentes = new HashMap<>();
 
-    static {
-        // Respaldo adicional: al cerrar la aplicacion se vuelve a guardar el mapa.
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            try {
-                guardarAgentes();
-            } catch (Exception e) {
-                System.err.println("No se pudieron guardar los agentes al cerrar: " + e.getMessage());
-            }
-        }, "guardar-agentes"));
+    // Unica instancia de la clase
+    private static ServicioAgentes instancia;
+
+    // Constructor privado
+    private ServicioAgentes() {
     }
 
-    private static Path obtenerRutaArchivo() {
-        String rutaPersonalizada = System.getProperty("sistema.agentes.archivo");
-        if (rutaPersonalizada != null && !rutaPersonalizada.isBlank()) {
-            return Paths.get(rutaPersonalizada);
+    // Metodo para obtener la unica instancia
+    public static ServicioAgentes getInstancia() {
+        if (instancia == null) {
+            instancia = new ServicioAgentes();
         }
-        return Paths.get(System.getProperty("user.home"), ".sistema-agentes-inteligentes", "agentes.dat");
+
+        return instancia;
     }
 
-    @SuppressWarnings("unchecked")
-    private static Map<Integer, AgenteInteligente> cargarAgentes() {
-        if (!Files.exists(ARCHIVO_DATOS)) {
-            return new HashMap<>();
-        }
-
-        try (ObjectInputStream entrada = new ObjectInputStream(Files.newInputStream(ARCHIVO_DATOS))) {
-            Object datos = entrada.readObject();
-            if (datos instanceof Map<?, ?> mapa) {
-                Map<Integer, AgenteInteligente> cargados = new HashMap<>();
-                for (Map.Entry<?, ?> entradaMapa : mapa.entrySet()) {
-                    if (entradaMapa.getKey() instanceof Integer id
-                            && entradaMapa.getValue() instanceof AgenteInteligente agente) {
-                        cargados.put(id, agente);
-                    }
-                }
-                return cargados;
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println("No se pudieron cargar los agentes guardados: " + e.getMessage());
-        }
-
-        return new HashMap<>();
-    }
-
-    private static synchronized void guardarAgentes() throws IOException {
-        Path carpeta = ARCHIVO_DATOS.getParent();
-        if (carpeta != null) {
-            Files.createDirectories(carpeta);
-        }
-
-        Path temporal = ARCHIVO_DATOS.resolveSibling(ARCHIVO_DATOS.getFileName() + ".tmp");
-        try (ObjectOutputStream salida = new ObjectOutputStream(Files.newOutputStream(temporal))) {
-            salida.writeObject(agentes);
-        }
-
-        try {
-            Files.move(temporal, ARCHIVO_DATOS, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
-        } catch (IOException e) {
-            // Algunos sistemas de archivos no permiten ATOMIC_MOVE.
-            Files.move(temporal, ARCHIVO_DATOS, StandardCopyOption.REPLACE_EXISTING);
-        }
-    }
-
-    public static synchronized Map<Integer, AgenteInteligente> getAgentes(){
+    @Override
+    public Map<Integer, AgenteInteligente> getAgentes() {
         return Map.copyOf(agentes);
     }
 
-    public static synchronized void addAgente(AgenteInteligente agente){
+    @Override
+    public void addAgente(AgenteInteligente agente) throws Exception {
         if (agente == null) {
-            throw new IllegalArgumentException("El agente no puede ser nulo");
+            throw new Exception("El agente no puede ser nulo");
         }
+        if (agentes.containsKey(agente.getIdAgente())) {
+            throw new Exception("Ya existe un agente registrado con el ID " + agente.getIdAgente());
+        }
+
         agentes.put(agente.getIdAgente(), agente);
-        try {
-            guardarAgentes();
-        } catch (IOException e) {
-            throw new IllegalStateException("No se pudo guardar la informacion: " + e.getMessage(), e);
-        }
+        ServicioObserver.cambio();
     }
 
-    public static synchronized AgenteInteligente obtenerAgente(int id) {
-        return agentes.get(id);
-    }
-
-    public static synchronized void deleteAgente(int id) throws Exception
-    {
+    @Override
+    public void deleteAgente(int id) throws Exception {
         if (!agentes.containsKey(id)) {
             throw new Exception("No se ha encontrado ningun agente para eliminar");
         }
 
         agentes.remove(id);
-        guardarAgentes();
+        ServicioObserver.cambio();
     }
 
-    public static synchronized void actualizarAgente(int id, AgenteInteligente agente) throws Exception
-    {
+    @Override
+    public void actualizarAgente(int id, AgenteInteligente agente) throws Exception {
         if (!agentes.containsKey(id)) {
             throw new Exception("No se ha encontrado ningun agente para actualizar");
         }
@@ -131,23 +77,11 @@ public class ServicioAgentes {
 
         agentes.remove(id);
         agentes.put(agente.getIdAgente(), agente);
-        guardarAgentes();
+        ServicioObserver.cambio();
     }
 
-    public static synchronized AgenteInteligente buscarAgente(int id)
-    {
+    @Override
+    public AgenteInteligente buscarAgente(int id) {
         return agentes.get(id);
-    }
-
-    /**
-     * Fuerza un guardado manual. Normalmente no hace falta llamarlo porque las
-     * operaciones de alta, actualizacion y eliminacion ya guardan automaticamente.
-     */
-    public static synchronized void guardarDatos() throws IOException {
-        guardarAgentes();
-    }
-
-    public static Path getRutaArchivoDatos() {
-        return ARCHIVO_DATOS;
     }
 }

@@ -8,21 +8,33 @@ import com.mycompany.sistemaagentesinteligentes.model.AgenteInteligente;
 import com.mycompany.sistemaagentesinteligentes.model.AgenteNavegacion;
 import java.util.Map;
 import javax.swing.table.DefaultTableModel;
+import com.mycompany.sistemaagentesinteligentes.services.IServicioAgentes;
 import com.mycompany.sistemaagentesinteligentes.services.ServicioAgentes;
+import com.mycompany.sistemaagentesinteligentes.services.ServicioObserver;
 
 /**
  *
  * @author Juan Acuña, Luis Hernández, Stephany Trujillo
  */
-public class GUIListarNavegacion extends javax.swing.JFrame {
+public class GUIListarNavegacion extends javax.swing.JFrame implements ICambiable {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUIListarNavegacion.class.getName());
+
+    private IServicioAgentes servicioAgentes;
 
     /**
      * Creates new form GUIListarNavegacion
      */
     public GUIListarNavegacion() {
         initComponents();
+        setLocationRelativeTo(null);
+        servicioAgentes = ServicioAgentes.getInstancia();
+        ServicioObserver.addGUIAgente(this);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                ServicioObserver.delGUIAgente(GUIListarNavegacion.this);
+            }
+        });
     }
 
     /**
@@ -100,8 +112,11 @@ public class GUIListarNavegacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        Map<Integer, AgenteInteligente> agentes;
-        agentes = ServicioAgentes.getAgentes();
+        cargarTabla();
+    }//GEN-LAST:event_btnListarActionPerformed
+
+    private void cargarTabla() {
+        Map<Integer, AgenteInteligente> agentes = servicioAgentes.getAgentes();
 
         DefaultTableModel modelo = (DefaultTableModel) tblAgentes.getModel();
         modelo.setRowCount(0);
@@ -125,8 +140,12 @@ public class GUIListarNavegacion extends javax.swing.JFrame {
 
             modelo.addRow(fila);
         }
+    }
 
-    }//GEN-LAST:event_btnListarActionPerformed
+    @Override
+    public void cambio() {
+        cargarTabla();
+    }
 
     /**
      * @param args the command line arguments

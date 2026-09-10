@@ -4,27 +4,29 @@
  */
 package com.mycompany.sistemaagentesinteligentes.model;
 
-import java.io.Serializable;
-
 /**
  * Representa a un usuario que es asistido por un AgenteAsistenciaMedica.
+ * Cumple el rol de "Clase D" del diagrama de clases: esta asociada a la
+ * Clase B (AgenteAsistenciaMedica) a traves del ID del agente al que
+ * queda asignado (idAgenteAsistencia), igual que AccesorioCuerda se asocia
+ * a InstrumentoCuerda mediante idInstrumento en la guia.
  * Asociacion: 1 AgenteAsistenciaMedica -- 1..* Usuario ("asiste").
  *
  * @author Juan Acuña, Luis Hernández, Stephany Trujillo
  */
-public class Usuario implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Usuario {
 
     private int idUsuario;
     private String nombre;
     private String correo;
+    private int idAgenteAsistencia;
 
-    public Usuario(int idUsuario, String nombre, String correo)
+    public Usuario(int idUsuario, String nombre, String correo, int idAgenteAsistencia)
     {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.correo = correo;
+        this.idAgenteAsistencia = idAgenteAsistencia;
     }
 
     public int getIdUsuario()
@@ -55,5 +57,15 @@ public class Usuario implements Serializable {
     public void setCorreo(String correo)
     {
         this.correo = correo;
+    }
+
+    public int getIdAgenteAsistencia()
+    {
+        return idAgenteAsistencia;
+    }
+
+    public void setIdAgenteAsistencia(int idAgenteAsistencia)
+    {
+        this.idAgenteAsistencia = idAgenteAsistencia;
     }
 }

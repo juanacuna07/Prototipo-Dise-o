@@ -5,7 +5,10 @@
 package com.mycompany.sistemaagentesinteligentes.gui;
 
 import com.mycompany.sistemaagentesinteligentes.model.AgenteAsistenciaMedica;
+import com.mycompany.sistemaagentesinteligentes.model.Usuario;
+import com.mycompany.sistemaagentesinteligentes.services.IServicioAgentes;
 import com.mycompany.sistemaagentesinteligentes.services.ServicioAgentes;
+import com.mycompany.sistemaagentesinteligentes.services.ServicioUsuarios;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,12 +19,15 @@ public class GUIAdicionarAsistenciaMedica extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUIAdicionarAsistenciaMedica.class.getName());
 
+    private IServicioAgentes servicioAgentes;
+
     /**
      * Creates new form GUIAdicionarAsistenciaMedica
      */
     public GUIAdicionarAsistenciaMedica() {
-        setLocationRelativeTo(this);
         initComponents();
+        setLocationRelativeTo(null);
+        servicioAgentes = ServicioAgentes.getInstancia();
     }
 
     /**
@@ -65,6 +71,8 @@ public class GUIAdicionarAsistenciaMedica extends javax.swing.JFrame {
         txtSignosVitalesMonitoreados = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         txtTiempoRespuestaMedica = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txtIdUsuarioAsociar = new javax.swing.JTextField();
         btnAdicionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -121,6 +129,9 @@ public class GUIAdicionarAsistenciaMedica extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Tiempo Respuesta Medica (min)");
 
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Asociar a Usuario (ID, opcional)");
+
         btnAdicionar.setBackground(new java.awt.Color(255, 255, 255));
         btnAdicionar.setForeground(new java.awt.Color(21, 101, 192));
         btnAdicionar.setText("Adicionar");
@@ -151,6 +162,7 @@ public class GUIAdicionarAsistenciaMedica extends javax.swing.JFrame {
                             .addComponent(jLabel14)
                             .addComponent(jLabel15)
                             .addComponent(jLabel16)
+                            .addComponent(jLabel17)
                         )
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,6 +181,7 @@ public class GUIAdicionarAsistenciaMedica extends javax.swing.JFrame {
                             .addComponent(txtProtocoloEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtSignosVitalesMonitoreados, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTiempoRespuestaMedica, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdUsuarioAsociar, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         )
                     )
                     .addComponent(btnAdicionar)
@@ -241,6 +254,10 @@ public class GUIAdicionarAsistenciaMedica extends javax.swing.JFrame {
                     .addComponent(jLabel16)
                     .addComponent(txtTiempoRespuestaMedica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(txtIdUsuarioAsociar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdicionar)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -292,15 +309,28 @@ public class GUIAdicionarAsistenciaMedica extends javax.swing.JFrame {
             String strTiempoRespuestaMedica = txtTiempoRespuestaMedica.getText().trim();
             double tiempoRespuestaMedica = Double.parseDouble(strTiempoRespuestaMedica);
 
-            if (ServicioAgentes.obtenerAgente(idAgente) != null) {
-                JOptionPane.showMessageDialog(this, "Error: Ya existe un agente registrado con el ID " + idAgente, "ID Duplicado", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-
             AgenteAsistenciaMedica ag = new AgenteAsistenciaMedica(idAgente, nombre, nivelAutonomia, estadoOperativo, nivelConfianza,
                     usuarioAsignado, tipoAsistencia, nivelUrgencia, comandosProcesados, idiomaRespuesta,
                     especialidadMedica, nivelPrioridadPaciente, protocoloEmergencia, signosVitalesMonitoreados, tiempoRespuestaMedica);
-            ServicioAgentes.addAgente(ag);
+            servicioAgentes.addAgente(ag);
+
+            // Asociacion opcional con un Usuario (Clase D) ya existente, al momento de crear el agente (Clase B)
+            String strIdUsuarioAsociar = txtIdUsuarioAsociar.getText().trim();
+            if (!strIdUsuarioAsociar.isEmpty()) {
+                try {
+                    int idUsuarioAsociar = Integer.parseInt(strIdUsuarioAsociar);
+                    Usuario usuario = ServicioUsuarios.getInstancia().buscarUsuario(idUsuarioAsociar);
+                    if (usuario == null) {
+                        JOptionPane.showMessageDialog(this, "El agente se creó, pero no existe ningún Usuario con el ID " + idUsuarioAsociar + "; no se asoció.", "Usuario no encontrado", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        ag.agregarUsuarioAsistido(usuario);
+                        usuario.setIdAgenteAsistencia(ag.getIdAgente());
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "El agente se creó, pero el ID de Usuario a asociar debe ser numérico; no se asoció.", "Dato inválido", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+
             JOptionPane.showMessageDialog(this, "Agente de asistencia medica creado!");
 
         } catch (NumberFormatException e) {
@@ -348,8 +378,10 @@ public class GUIAdicionarAsistenciaMedica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtIdAgente;
+    private javax.swing.JTextField txtIdUsuarioAsociar;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNivelAutonomia;
     private javax.swing.JTextField txtEstadoOperativo;

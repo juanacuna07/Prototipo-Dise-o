@@ -5,6 +5,7 @@
 package com.mycompany.sistemaagentesinteligentes.gui;
 
 import com.mycompany.sistemaagentesinteligentes.model.AgenteNavegacion;
+import com.mycompany.sistemaagentesinteligentes.services.IServicioAgentes;
 import com.mycompany.sistemaagentesinteligentes.services.ServicioAgentes;
 import javax.swing.JOptionPane;
 
@@ -16,12 +17,15 @@ public class GUIAdicionarNavegacion extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUIAdicionarNavegacion.class.getName());
 
+    private IServicioAgentes servicioAgentes;
+
     /**
      * Creates new form GUIAdicionarNavegacion
      */
     public GUIAdicionarNavegacion() {
-        setLocationRelativeTo(this);
         initComponents();
+        setLocationRelativeTo(null);
+        servicioAgentes = ServicioAgentes.getInstancia();
     }
 
     /**
@@ -213,13 +217,8 @@ public class GUIAdicionarNavegacion extends javax.swing.JFrame {
             String strPrecisionGPS = txtPrecisionGPS.getText().trim();
             double precisionGPS = Double.parseDouble(strPrecisionGPS);
 
-            if (ServicioAgentes.obtenerAgente(idAgente) != null) {
-                JOptionPane.showMessageDialog(this, "Error: Ya existe un agente registrado con el ID " + idAgente, "ID Duplicado", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-
             AgenteNavegacion ag = new AgenteNavegacion(idAgente, nombre, nivelAutonomia, estadoOperativo, nivelConfianza, origen, destino, obstaculosDetectados, precisionGPS);
-            ServicioAgentes.addAgente(ag);
+            servicioAgentes.addAgente(ag);
             JOptionPane.showMessageDialog(this, "Agente de navegacion creado!");
 
         } catch (NumberFormatException e) {

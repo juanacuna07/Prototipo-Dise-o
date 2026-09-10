@@ -4,6 +4,7 @@
  */
 package com.mycompany.sistemaagentesinteligentes.gui;
 
+import com.mycompany.sistemaagentesinteligentes.services.InformacionAplicacion;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
      */
     public GUIPrincipal() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -41,12 +43,19 @@ public class GUIPrincipal extends javax.swing.JFrame {
         menuItemAdicionarNavegacion = new javax.swing.JMenuItem();
         menuItemListarNavegacion = new javax.swing.JMenuItem();
         menuItemConsultarNavegacion = new javax.swing.JMenuItem();
+        menuItemActualizarNavegacion = new javax.swing.JMenuItem();
         menuItemEliminarNavegacion = new javax.swing.JMenuItem();
         menuAgenteAsistenciaMedica = new javax.swing.JMenu();
         menuItemAdicionarAsistenciaMedica = new javax.swing.JMenuItem();
         menuItemListarAsistenciaMedica = new javax.swing.JMenuItem();
         menuItemConsultarAsistenciaMedica = new javax.swing.JMenuItem();
+        menuItemActualizarAsistenciaMedica = new javax.swing.JMenuItem();
         menuItemEliminarAsistenciaMedica = new javax.swing.JMenuItem();
+        menuUsuario = new javax.swing.JMenu();
+        menuItemAdicionarUsuario = new javax.swing.JMenuItem();
+        menuItemListarUsuario = new javax.swing.JMenuItem();
+        menuItemActualizarUsuario = new javax.swing.JMenuItem();
+        menuItemEliminarUsuario = new javax.swing.JMenuItem();
         menuCalculos = new javax.swing.JMenu();
         menuItemCalcularRendimiento = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
@@ -116,6 +125,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
         menuItemConsultarNavegacion.addActionListener(this::menuItemConsultarNavegacionActionPerformed);
         menuAgenteNavegacion.add(menuItemConsultarNavegacion);
 
+        menuItemActualizarNavegacion.setText("Actualizar AgenteNavegacion");
+        menuItemActualizarNavegacion.addActionListener(this::menuItemActualizarNavegacionActionPerformed);
+        menuAgenteNavegacion.add(menuItemActualizarNavegacion);
+
         menuItemEliminarNavegacion.setText("Eliminar AgenteNavegacion");
         menuItemEliminarNavegacion.addActionListener(this::menuItemEliminarNavegacionActionPerformed);
         menuAgenteNavegacion.add(menuItemEliminarNavegacion);
@@ -136,11 +149,35 @@ public class GUIPrincipal extends javax.swing.JFrame {
         menuItemConsultarAsistenciaMedica.addActionListener(this::menuItemConsultarAsistenciaMedicaActionPerformed);
         menuAgenteAsistenciaMedica.add(menuItemConsultarAsistenciaMedica);
 
+        menuItemActualizarAsistenciaMedica.setText("Actualizar AgenteAsistenciaMedica");
+        menuItemActualizarAsistenciaMedica.addActionListener(this::menuItemActualizarAsistenciaMedicaActionPerformed);
+        menuAgenteAsistenciaMedica.add(menuItemActualizarAsistenciaMedica);
+
         menuItemEliminarAsistenciaMedica.setText("Eliminar AgenteAsistenciaMedica");
         menuItemEliminarAsistenciaMedica.addActionListener(this::menuItemEliminarAsistenciaMedicaActionPerformed);
         menuAgenteAsistenciaMedica.add(menuItemEliminarAsistenciaMedica);
 
         jMenuBar1.add(menuAgenteAsistenciaMedica);
+
+        menuUsuario.setText("Usuario (Gestionar D)");
+
+        menuItemAdicionarUsuario.setText("Adicionar Usuario");
+        menuItemAdicionarUsuario.addActionListener(this::menuItemAdicionarUsuarioActionPerformed);
+        menuUsuario.add(menuItemAdicionarUsuario);
+
+        menuItemListarUsuario.setText("Listar Usuario");
+        menuItemListarUsuario.addActionListener(this::menuItemListarUsuarioActionPerformed);
+        menuUsuario.add(menuItemListarUsuario);
+
+        menuItemActualizarUsuario.setText("Actualizar Usuario");
+        menuItemActualizarUsuario.addActionListener(this::menuItemActualizarUsuarioActionPerformed);
+        menuUsuario.add(menuItemActualizarUsuario);
+
+        menuItemEliminarUsuario.setText("Eliminar Usuario");
+        menuItemEliminarUsuario.addActionListener(this::menuItemEliminarUsuarioActionPerformed);
+        menuUsuario.add(menuItemEliminarUsuario);
+
+        jMenuBar1.add(menuUsuario);
 
         menuCalculos.setText("Calculos");
 
@@ -222,21 +259,56 @@ public class GUIPrincipal extends javax.swing.JFrame {
         gui.setVisible(true);
     }
 
+    private void menuItemActualizarNavegacionActionPerformed(java.awt.event.ActionEvent evt) {
+        GUIEditarNavegacion gui = new GUIEditarNavegacion();
+        gui.setVisible(true);
+    }
+
+    private void menuItemActualizarAsistenciaMedicaActionPerformed(java.awt.event.ActionEvent evt) {
+        GUIEditarAsistenciaMedica gui = new GUIEditarAsistenciaMedica();
+        gui.setVisible(true);
+    }
+
+    private void menuItemAdicionarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {
+        GUIAdicionarUsuario gui = new GUIAdicionarUsuario();
+        gui.setVisible(true);
+    }
+
+    private void menuItemListarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {
+        GUIListarUsuario gui = new GUIListarUsuario();
+        gui.setVisible(true);
+    }
+
+    private void menuItemActualizarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {
+        GUIEditarUsuario gui = new GUIEditarUsuario();
+        gui.setVisible(true);
+    }
+
+    private void menuItemEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {
+        GUIEliminarUsuario gui = new GUIEliminarUsuario();
+        gui.setVisible(true);
+    }
+
     private void menuItemCalcularRendimientoActionPerformed(java.awt.event.ActionEvent evt) {
         GUICalcularRendimiento gui = new GUICalcularRendimiento();
         gui.setVisible(true);
     }
 
     private void menuItemAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAutoresActionPerformed
-        JOptionPane.showMessageDialog(null, "Hecho por Juan Acuña, Luis Hernández, Stephany Trujillo\nVersion 2.0", "Autores", JOptionPane.INFORMATION_MESSAGE);
+        InformacionAplicacion info = InformacionAplicacion.getInstancia();
+        JOptionPane.showMessageDialog(null,
+                info.getNombreAplicacion() + "\n"
+                + "Integrantes: " + info.getIntegrantes() + "\n"
+                + info.getVersion(),
+                "Acerca de...", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_menuItemAutoresActionPerformed
 
     private void menuItemComoUsarloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemComoUsarloActionPerformed
         JOptionPane.showMessageDialog(null, "Tienes un menu para gestionar dos tipos de agentes: Navegacion y Asistencia Medica.", "Tutorial", JOptionPane.INFORMATION_MESSAGE);
         JOptionPane.showMessageDialog(null, "AgenteNavegacion y AgenteAsistenciaMedica heredan directamente de AgenteInteligente. AgenteAsistenciaMedica reemplaza al antiguo AgenteAsistencia (ya incluye todos sus atributos).", "Tutorial", JOptionPane.INFORMATION_MESSAGE);
         JOptionPane.showMessageDialog(null, "Puedes adicionar y listar cada tipo de agente desde su respectivo menu.", "Tutorial", JOptionPane.INFORMATION_MESSAGE);
-        JOptionPane.showMessageDialog(null, "Para consultar, eliminar o calcular rendimiento solo selecciona el agente de la lista: no necesitas recordar su ID.", "Tutorial", JOptionPane.INFORMATION_MESSAGE);
-        JOptionPane.showMessageDialog(null, "Los agentes se guardan automaticamente en disco y se recuperan al volver a abrir el programa.", "Tutorial", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Para consultar o eliminar un agente, escribe su ID en el campo de busqueda y presiona Consultar (o Enter).", "Tutorial", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Los agentes se guardan en memoria mientras el programa esta abierto; al cerrarlo, la informacion no se conserva.", "Tutorial", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_menuItemComoUsarloActionPerformed
 
     /**
@@ -272,8 +344,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuArchivo;
     private javax.swing.JMenu menuAyuda;
     private javax.swing.JMenu menuCalculos;
+    private javax.swing.JMenu menuUsuario;
+    private javax.swing.JMenuItem menuItemActualizarAsistenciaMedica;
+    private javax.swing.JMenuItem menuItemActualizarNavegacion;
+    private javax.swing.JMenuItem menuItemActualizarUsuario;
     private javax.swing.JMenuItem menuItemAdicionarAsistenciaMedica;
     private javax.swing.JMenuItem menuItemAdicionarNavegacion;
+    private javax.swing.JMenuItem menuItemAdicionarUsuario;
     private javax.swing.JMenuItem menuItemAutores;
     private javax.swing.JMenuItem menuItemCalcularRendimiento;
     private javax.swing.JMenuItem menuItemComoUsarlo;
@@ -281,8 +358,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemConsultarNavegacion;
     private javax.swing.JMenuItem menuItemEliminarAsistenciaMedica;
     private javax.swing.JMenuItem menuItemEliminarNavegacion;
+    private javax.swing.JMenuItem menuItemEliminarUsuario;
     private javax.swing.JMenuItem menuItemListarAsistenciaMedica;
     private javax.swing.JMenuItem menuItemListarNavegacion;
+    private javax.swing.JMenuItem menuItemListarUsuario;
     private javax.swing.JMenuItem menuItemSalir;
     // End of variables declaration//GEN-END:variables
 }

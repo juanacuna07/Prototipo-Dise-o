@@ -4,15 +4,11 @@
  */
 package com.mycompany.sistemaagentesinteligentes.model;
 
-import java.io.Serializable;
-
 /**
  *
  * @author Juan Acuña, Luis Hernández, Stephany Trujillo
  */
-public abstract class AgenteInteligente implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public abstract class AgenteInteligente {
 
     private int idAgente;
     private String nombre;

@@ -7,14 +7,12 @@ package com.mycompany.sistemaagentesinteligentes.model;
 /**
  * AgenteNavegacion cumple el rol de "Clase C" del diagrama de clases:
  * hereda de AgenteInteligente (Clase A) e implementa la interfaz
- * IRecalibrable, ademas de sobreescribir calcularRendimiento() para
+ * IAplicable, ademas de sobreescribir calcularRendimiento() para
  * aplicar polimorfismo junto con AgenteAsistenciaMedica.
  *
  * @author Juan Acuña, Luis Hernández, Stephany Trujillo
  */
-public class AgenteNavegacion extends AgenteInteligente implements IRecalibrable {
-
-    private static final long serialVersionUID = 1L;
+public class AgenteNavegacion extends AgenteInteligente implements IAplicable {
 
     private String origen;
     private String destino;
@@ -119,12 +117,12 @@ public class AgenteNavegacion extends AgenteInteligente implements IRecalibrable
     }
 
     /**
-     * Implementacion de IRecalibrable: simula una recalibracion del
-     * sistema de navegacion, mejorando la precision GPS y limpiando la
+     * Implementacion de IAplicable: aplica una recalibracion del sistema
+     * de navegacion, mejorando la precision GPS y limpiando la
      * descripcion de obstaculos detectados.
      */
     @Override
-    public void recalibrar()
+    public void aplicar()
     {
         try {
             setPrecisionGPS(Math.min(100, this.precisionGPS + 5));

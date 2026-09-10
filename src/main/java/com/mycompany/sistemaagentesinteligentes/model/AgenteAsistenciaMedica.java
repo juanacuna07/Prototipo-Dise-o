@@ -13,15 +13,14 @@ import java.util.List;
  * que antes tenia AgenteAsistencia, mas sus propios atributos medicos.
  *
  * Esta clase cumple el rol de "Clase B" del diagrama de clases: hereda de
- * AgenteInteligente (Clase A) y esta asociada a Usuario (Clase D, sin
- * implementar sus funcionalidades en este prototipo). Ademas sobreescribe
- * calcularRendimiento() para aplicar polimorfismo junto con AgenteNavegacion.
+ * AgenteInteligente (Clase A) y esta asociada a Usuario (Clase D) a traves
+ * de la lista usuariosAsistidos (gestionada por ServicioUsuarios). Ademas
+ * sobreescribe calcularRendimiento() para aplicar polimorfismo junto con
+ * AgenteNavegacion.
  *
  * @author Juan Acuña, Luis Hernández, Stephany Trujillo
  */
 public class AgenteAsistenciaMedica extends AgenteInteligente {
-
-    private static final long serialVersionUID = 1L;
 
     // Atributos que antes pertenecian a AgenteAsistencia
     private String usuarioAsignado;
@@ -69,6 +68,11 @@ public class AgenteAsistenciaMedica extends AgenteInteligente {
             throw new Exception("El usuario a asistir no puede ser nulo");
         }
         this.usuariosAsistidos.add(usuario);
+    }
+
+    public void removerUsuarioAsistido(Usuario usuario)
+    {
+        this.usuariosAsistidos.remove(usuario);
     }
 
     public String getUsuarioAsignado()
